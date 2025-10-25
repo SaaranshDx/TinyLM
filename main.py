@@ -4,7 +4,7 @@ import os
 from collections import defaultdict
 
 class TinyLM:
-    """bare metal ai by Saaransh_Xd"""
+    """TInyLM by Saaransh_Xd"""
     
     def __init__(self, vocab_size=10000, embedding_dim=256, hidden_dim=512, 
                  num_layers=4, max_seq_len=128):
@@ -18,10 +18,9 @@ class TinyLM:
         self.id2token = {}
         self.weights = {}
         self.trained = False
-        self.model_file = "tiny_lm_model.pkl"
+        self.model_file = "TinyLM.pkl"
         
     def _build_vocab(self, texts, max_vocab=10000):
-        """Build vocabulary from texts"""
         freq = defaultdict(int)
         for text in texts:
             for word in text.split():
@@ -54,12 +53,10 @@ class TinyLM:
         self.weights['output_b'] = np.zeros(self.vocab_size)
         
     def _count_params(self):
-        """Count total parameters"""
         total = sum(w.size for w in self.weights.values())
         return total
         
     def forward(self, token_ids):
-        """Forward pass through model"""
         seq_len = len(token_ids)
         x = self.weights['embedding'][token_ids]  # (seq_len, embedding_dim)
         
@@ -73,7 +70,6 @@ class TinyLM:
         return logits
     
     def train(self, texts, epochs=20, learning_rate=0.01):
-        """Train model on text data OR ON WHAT UR SUPPOSED TO TRAIN ON MOTHER F-"""
         print("Building vocabulary...")
         self._build_vocab(texts)
         print(f"Vocab size: {self.vocab_size}")
@@ -119,7 +115,6 @@ class TinyLM:
         
         #modle config    
     def generate(self, prompt, max_tokens=20, temperature=1.0):
-        """get text from porompt"""
         if not self.trained:
             print("Model not trained! Run train() first.")
             return ""
@@ -142,7 +137,6 @@ class TinyLM:
         return " ".join(result)
     
     def save(self):
-        """Save model to disk so u wont need to train over again"""
         with open(self.model_file, 'wb') as f:
             pickle.dump({
                 'weights': self.weights,
@@ -156,7 +150,6 @@ class TinyLM:
         print(f"Model saved to {self.model_file}")
     
     def load(self):
-        """Load model from disk"""
         if not os.path.exists(self.model_file):
             print(f"No saved model found at {self.model_file}")
             return False
