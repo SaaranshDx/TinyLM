@@ -9,8 +9,8 @@
 Installation: <br>
 1. install necessary libraries run <code>pip install -r "requirements.txt"</code> <br>
 2. gather data you can use the <code>get_data.py</code> file but i will recomend using your own data set <br>
-3. run the model it might take some time to train when u first run it it depens on your dataset you can tune the model in <code>main.py</code>file <br>
-<p align="center">
+3. run the model it might take some time to train when u first run it it depens on your dataset you can tune the model in <code>main.py</code>file <br> <hr>
+<p align="center"> 
   Made with ❤️ by <strong>Saaransh_Xd</strong>
 </p>
 
